@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: montudor/action-zip@v1.0.0
         with:       
-          args: zip -qq -r vendor.zip vendor
+          args: zip -qq -r vendor.zip assets pack.mcmeta pack.png
       - uses: actions/upload-artifact@v2
         with:
           name: vendor.zip

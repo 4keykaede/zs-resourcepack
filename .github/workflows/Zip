@@ -1,0 +1,17 @@
+name: Zip
+
+on:
+  push: { branches: [main]}
+
+jobs:
+  build:
+    name: zip
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: montudor/action-zip@v1.0.0
+        with:       
+          args: zip -qq -r vendor.zip vendor
+      - uses: actions/upload-artifact@v2
+        with:
+          name: vendor.zip

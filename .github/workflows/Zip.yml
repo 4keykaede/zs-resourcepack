@@ -16,5 +16,5 @@ jobs:
           dest: result.zip
       - uses: actions/upload-artifact@v2
         with:
-          name: result.zip
+          name: result
           path: ${{ github.workspace }}/result.zip

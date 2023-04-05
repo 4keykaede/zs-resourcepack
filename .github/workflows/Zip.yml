@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: montudor/action-zip@v1.0.0
+      - uses: vimtor/action-zip@v1
         with:
           files: assets pack.mcmeta pack.png
           recursive: true

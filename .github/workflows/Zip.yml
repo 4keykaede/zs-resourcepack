@@ -10,8 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: montudor/action-zip@v1.0.0
-        with:       
-          args: zip -qq -r vendor.zip assets pack.mcmeta pack.png
+        with:
+          files: assets pack.mcmeta pack.png
+          recursive: true
+          dest: result.zip
       - uses: actions/upload-artifact@v2
         with:
-          name: vendor.zip
+          name: result.zip
+          path: ${{ github.workspace }}/result.zip

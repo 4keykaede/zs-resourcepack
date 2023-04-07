@@ -2,19 +2,27 @@ name: Zip
 
 on:
   push: { branches: [main]}
-
+  
 jobs:
   build:
-    name: zip
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: vimtor/action-zip@v1
-        with:
-          files: assets pack.mcmeta pack.png
-          recursive: true
-          dest: result.zip
-      - uses: actions/upload-artifact@v2
-        with:
-          name: result
-          path: ${{ github.workspace }}/result.zip
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: pull latest and remove old file from repo
+      run: |
+        git config --global user.name "4keykaede"
+        git config --global user.email "kaederia19346@gmail.com"
+        git config pull.rebase false
+        git pull
+        rm -f release.zip
+    - name: Archive Release
+      uses: thedoctor0/zip-release@master
+      with:
+        filename: 'release.zip'
+        exclusions: '*.git* /*node_modules/* .editorconfig'
+    - name: push changes to remote
+      run: |
+        git add -A
+        git commit -m "release resourcepack"
+        git push --force
